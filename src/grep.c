@@ -2578,6 +2578,34 @@ main (int argc, char **argv)
       execute = EGexecute;
     }
 
+  /**
+   * Print the 'keys' or patterns that will be matched.
+   * 
+   * By inspecting the code above, we can see that:
+   * 1. Patterns are stored in the 'keys' array
+   * 2. Each key is separated from the next by a newline
+   * 3. The count of characters in all strings and newlines is stored in keycc
+   *
+   * The following code prints out all patterns parsed, on separate lines.
+   */
+  int i = 0;
+  char c;
+  const char HEADER[] = "Tutorons string: ";
+  printf(HEADER);
+  while (true) {
+    c = keys[i];
+    if (i >= keycc) {
+      break;
+    } else if (c == '\n') {
+      printf("\n");
+      printf(HEADER);
+    } else {
+      printf("%c", c);
+    } 
+    i++;
+  }
+  printf("\n");
+
   compile (keys, keycc);
   free (keys);
   /* We need one byte prior and one after.  */
